@@ -1,3 +1,5 @@
+using ArandaLogicaNegocio.DTOs;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,9 @@ using System.Web.Routing;
 namespace ArandaAPI
 {
     public class WebApiApplication : System.Web.HttpApplication
+
     {
+        internal static MapperConfiguration MapperConfiguration { get; set; }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,6 +22,8 @@ namespace ArandaAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            MapperConfiguration = MapperConfig.MapperConfiguration();
         }
     }
 }

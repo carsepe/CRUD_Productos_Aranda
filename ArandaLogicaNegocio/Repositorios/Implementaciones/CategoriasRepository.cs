@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArandaLogicaNegocio.Repositorios.Implementaciones
 {
-   public class CategoriasRepository : GenericRepository<Categorias>
+   public class CategoriasRepository : GenericRepository<Categorias>, ICategoriasRepository
     {
         public CategoriasRepository(ArandaContext arandaContext) : base(arandaContext)
         {

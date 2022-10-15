@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArandaLogicaNegocio.Modelos
 {
-    [Table("Productos", Schema = "dbo")]
+    [Table("Categorias", Schema = "dbo")]
     public class Categorias
     {
         [Key]
@@ -16,6 +16,6 @@ namespace ArandaLogicaNegocio.Modelos
         public string cat_nombre { get; set; }
         public string cat_descripcion { get; set; }
 
-        public virtual ICollection<Productos> Productos { get; set; }
+       public virtual ICollection<Productos> Productos { get; set; }
     }
 }

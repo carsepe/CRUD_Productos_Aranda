@@ -11,16 +11,21 @@ namespace ArandaLogicaNegocio.Dotos
 {
     public class ArandaContext : DbContext
     {
-        public ArandaContext() : base("Server=PC-CARSEPE;Database=db_aranda;User ID=sa;Password=123456;Integrated Security=True")
+        private static ArandaContext arandaContext = null;
+        public ArandaContext() 
+             : base("ArandaContext")
         {
-                
+                 
         }   
         public DbSet<Productos> Productos { get; set; }
         public DbSet<Categorias> Categorias { get; set; }
 
         public static ArandaContext Create()
         {
-            return new ArandaContext();
+            //if (arandaContext == null) 
+            //    arandaContext = new ArandaContext();
+                
+            return new ArandaContext();            
         }
     }
 }

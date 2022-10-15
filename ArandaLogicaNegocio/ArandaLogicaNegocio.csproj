@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dotos\ArandaContext.cs" />
+    <Compile Include="DTOs\CategoriasDTO.cs" />
+    <Compile Include="DTOs\MapperConfig.cs" />
     <Compile Include="DTOs\ProductosDTO.cs" />
     <Compile Include="Modelos\Categorias.cs" />
     <Compile Include="Modelos\Productos.cs" />

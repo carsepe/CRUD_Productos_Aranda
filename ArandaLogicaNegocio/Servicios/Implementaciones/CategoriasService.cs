@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArandaLogicaNegocio.Servicios.Implementaciones
 {
-   public class CategoriasService : GenericService<Categorias>
+   public class CategoriasService : GenericService<Categorias>, ICategoriasRepository
     {
         public CategoriasService(ICategoriasRepository categoriasRepository) : base(categoriasRepository)
         {

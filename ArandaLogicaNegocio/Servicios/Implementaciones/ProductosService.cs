@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArandaLogicaNegocio.Servicios.Implementaciones
 {
-    public class ProductosService:GenericService<Productos>
+    public class ProductosService:GenericService<Productos>, IProductosService
     {
         public ProductosService(IProductosRepository productosRepository): base(productosRepository)
         {
