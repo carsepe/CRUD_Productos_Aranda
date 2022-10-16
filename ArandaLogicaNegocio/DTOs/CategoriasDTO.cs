@@ -10,7 +10,7 @@ namespace ArandaLogicaNegocio.DTOs
     public class CategoriasDTO
     {
         //[Required(ErrorMessage = "El campo ID es requerido")]
-        //public int cat_id { get; set; }
+        public int cat_id { get; set; }
 
         [Required(ErrorMessage = "El capo nombre es requerido")]
         [StringLength(50)]

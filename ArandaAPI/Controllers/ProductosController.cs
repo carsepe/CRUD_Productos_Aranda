@@ -70,9 +70,12 @@ namespace ArandaAPI.Controllers
             if (!ModelState.IsValid) 
                 return BadRequest(ModelState);
 
-            var prod = await productosService.GetById(id);
+            if (productosDTO.pro_id != id)
+                return BadRequest();
 
-            if (prod == null)
+            var valProducto = await productosService.GetById(id);
+
+            if (valProducto == null)
                 return NotFound();
 
             try
@@ -80,6 +83,23 @@ namespace ArandaAPI.Controllers
                 var producto = mapper.Map<Productos>(productosDTO);
                 producto = await productosService.Update(producto);
                 return Ok(producto);
+            }
+            catch (Exception ex) { return InternalServerError(ex); }
+        }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeletProducto(int id)
+        {
+
+            var valProducto = await productosService.GetById(id);
+
+            if (valProducto == null)
+                return NotFound();
+
+            try
+            {
+                await productosService.Delete(id);
+                return Ok();
             }
             catch (Exception ex) { return InternalServerError(ex); }
         }

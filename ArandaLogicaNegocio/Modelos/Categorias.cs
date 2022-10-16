@@ -16,6 +16,5 @@ namespace ArandaLogicaNegocio.Modelos
         public string cat_nombre { get; set; }
         public string cat_descripcion { get; set; }
 
-       public virtual ICollection<Productos> Productos { get; set; }
     }
 }
