@@ -40,7 +40,7 @@ namespace ArandaAPI.Controllers
         {
             var productos = await productosService.GetById(id);
 
-            if(productos == null)
+            if (productos == null)
                 return NotFound();
 
             var productosDTO = mapper.Map<ProductosDTO>(productos);
@@ -49,7 +49,7 @@ namespace ArandaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Post(ProductosDTO productosDTO)
+        public async Task<IHttpActionResult> PostProducto(ProductosDTO productosDTO)
         {
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -62,6 +62,26 @@ namespace ArandaAPI.Controllers
             }
             catch (Exception ex) { return InternalServerError(ex); }
 
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> PutProducto(ProductosDTO productosDTO, int id)
+        {
+            if (!ModelState.IsValid) 
+                return BadRequest(ModelState);
+
+            var prod = await productosService.GetById(id);
+
+            if (prod == null)
+                return NotFound();
+
+            try
+            {
+                var producto = mapper.Map<Productos>(productosDTO);
+                producto = await productosService.Update(producto);
+                return Ok(producto);
+            }
+            catch (Exception ex) { return InternalServerError(ex); }
         }
 
     }

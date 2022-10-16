@@ -15,6 +15,7 @@ namespace ArandaLogicaNegocio.Modelos
         public int pro_id { get; set; }
         public string pro_nombre { get; set; }
         public string pro_descripcion { get; set; }
+        
         [ForeignKey("Categorias")]
         public int pro_cat_id { get; set; }
         public string pro_imagen { get; set; }

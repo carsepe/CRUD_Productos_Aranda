@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Threading.Tasks;
 
 
@@ -46,7 +47,8 @@ namespace ArandaLogicaNegocio.Repositorios.Implementaciones
 
         public async Task<TEntity> Update(TEntity entity)
         {
-            arandaContext.Entry(entity).State = EntityState.Modified;
+            //arandaContext.Entry(entity).State = EntityState.Modified;
+            arandaContext.Set<TEntity>().AddOrUpdate(entity);
             await arandaContext.SaveChangesAsync();
             return entity;
         }
