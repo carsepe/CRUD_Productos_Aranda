@@ -12,16 +12,16 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
+
 namespace ArandaAPI.Controllers
 {
-    [RoutePrefix("api/Productos")]
-    public class ProductosController : ApiController
+    public class CategoriasController : ApiController
     {
         private IMapper mapper;
-        
-        private readonly ProductosService productosService = new ProductosService(new ProductosRepository(ArandaContext.Create()));
 
-        public ProductosController()
+        private readonly CategoriasService categoriasService = new CategoriasService(new CategoriasRepository(ArandaContext.Create()));
+
+        public CategoriasController()
         {
             this.mapper = WebApiApplication.MapperConfiguration.CreateMapper();
         }
@@ -29,40 +29,39 @@ namespace ArandaAPI.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
-            var productos = await productosService.GetAll();
-            var productosDTO = productos.Select(x => mapper.Map<ProductosDTO>(x));
+            var categoria = await categoriasService.GetAll();
+            var categoriasDTO = categoria.Select(x => mapper.Map<CategoriasDTO>(x));
 
-            return Ok(productosDTO);
+            return Ok(categoriasDTO);
         }
 
         [HttpGet]
         public async Task<IHttpActionResult> GetById(int id)
         {
-            var productos = await productosService.GetById(id);
+            var categoria = await categoriasService.GetById(id);
 
-            if(productos == null)
+            if (categoria == null)
                 return NotFound();
 
-            var productosDTO = mapper.Map<ProductosDTO>(productos);
+            var categoriasDTO = mapper.Map<CategoriasDTO>(categoria);
 
-            return Ok(productosDTO);
+            return Ok(categoriasDTO);
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> Post(ProductosDTO productosDTO)
+        public async Task<IHttpActionResult> GetById(CategoriasDTO categoriasDTO)
         {
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             try
             {
-                var producto = mapper.Map<Productos>(productosDTO);
-                producto = await productosService.Insert(producto);
-                return Ok(producto);
+                var categoria = mapper.Map<Categorias>(categoriasDTO);
+                categoria = await categoriasService.Insert(categoria);
+                return Ok(categoria);
             }
             catch (Exception ex) { return InternalServerError(ex); }
 
         }
-
     }
 }
